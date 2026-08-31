@@ -1,6 +1,8 @@
 const state = { data: null, run: null, ledger: null, polling: false };
 
 const page = document.body.dataset.page;
+const basePath = document.body.dataset.basePath || "";
+const appUrl = (path) => `${basePath}${path}`;
 const root = document.getElementById("page-root");
 
 function escapeHtml(value = "") {
@@ -77,7 +79,7 @@ function renderOverview(data) {
             </div>
             <div class="benchmark-cta">
               <div class="sealed-box"><span>Sealed answer key</span><strong>PR #29641</strong><small>Unavailable to agents until reveal</small></div>
-              <a class="button" href="/changes/K8S-29297"><span class="button-spark">◇</span> Open blind replay</a>
+              <a class="button" href="${appUrl("/changes/K8S-29297")}"><span class="button-spark">◇</span> Open blind replay</a>
             </div>
           </div>
         </section>
@@ -88,7 +90,7 @@ function renderOverview(data) {
             <div class="prop-node ${item.tone}"><strong>${escapeHtml(item.product)}</strong><span>${escapeHtml(item.state)}</span><small>${escapeHtml(item.detail)}</small></div>
           `).join("")}</div>`,
           "section-gap",
-          '<a class="card-link" href="/memory">Open ledger →</a>'
+          `<a class="card-link" href="${appUrl("/memory")}">Open ledger →</a>`
         )}
       </div>
       <div>
@@ -111,7 +113,7 @@ function renderOverview(data) {
         ${org.teams.map((team) => `<tr><td><strong>${escapeHtml(team.name)}</strong></td><td>${escapeHtml(team.product)}</td><td><div class="progress-track ${team.risk === "high" ? "risk" : ""}"><i style="width:${team.coverage}%"></i></div><small>${team.coverage}% verified</small></td><td>${tag(team.risk === "low" ? "Healthy" : team.risk === "high" ? "Knowledge gap" : "Watch", team.risk === "low" ? "good" : "warning")}</td></tr>`).join("")}
       </tbody></table></div>`,
       "section-gap",
-      '<a class="card-link" href="/capability">Develop capability →</a>'
+      `<a class="card-link" href="${appUrl("/capability")}">Develop capability →</a>`
     )}
   `;
 }
@@ -122,7 +124,7 @@ function renderChanges(data) {
       "Change portfolio",
       "Route attention by consequence—not file count.",
       "GroundTruth reconstructs intent, maps blast radius, recalls institutional history, and challenges high-consequence changes before they merge.",
-      '<button class="button secondary">Filters <span>⌄</span></button><a class="button primary" href="/changes/K8S-29297"><span class="button-spark">◇</span> Run evidence benchmark</a>'
+      `<button class="button secondary">Filters <span>⌄</span></button><a class="button primary" href="${appUrl("/changes/K8S-29297")}"><span class="button-spark">◇</span> Run evidence benchmark</a>`
     )}
     <div class="content-grid equal">
       ${card("Assurance routing", "Current portfolio", `<div class="card-body"><div class="gap-visual">
@@ -145,7 +147,7 @@ function renderChanges(data) {
         <td><strong>${change.risk}/100</strong><small>${change.risk > 80 ? "Deep assurance" : change.risk < 10 ? "Auto-route" : "Targeted checks"}</small></td>
         <td>${tag(change.real ? "Real public evidence" : "Synthetic concept", change.real ? "real" : "candidate")}</td>
         <td>${tag(change.decision, change.decision === "BLOCK" ? "danger" : change.decision === "PASS" ? "good" : "sealed")}</td>
-        <td>${change.id === "K8S-29297" ? '<a class="table-link" href="/changes/K8S-29297">Open →</a>' : '<span class="card-link">View</span>'}</td>
+        <td>${change.id === "K8S-29297" ? `<a class="table-link" href="${appUrl("/changes/K8S-29297")}">Open →</a>` : '<span class="card-link">View</span>'}</td>
       </tr>`).join("")}
       </tbody></table></div>`,
       "section-gap"
@@ -237,7 +239,7 @@ function renderAssurance(data) {
   const terminal = run && ["complete", "failed"].includes(run.status);
   const running = run && !terminal;
   root.innerHTML = `
-    <div class="breadcrumb"><a href="/changes">Changes</a><span>›</span><span>K8S-29297</span><span>›</span><span>Blind assurance replay</span></div>
+    <div class="breadcrumb"><a href="${appUrl("/changes")}">Changes</a><span>›</span><span>K8S-29297</span><span>›</span><span>Blind assurance replay</span></div>
     <header class="page-head">
       <div class="assurance-title"><span class="repo-mark">K8</span><div><p class="eyebrow">Real public evidence · controlled benchmark</p><h1>${escapeHtml(detail.issue.title)}</h1><p>${escapeHtml(detail.issue.id)} · pre-fix commit ${escapeHtml(detail.snapshot_commit.slice(0, 12))}</p></div></div>
       <div class="head-actions"><a class="button secondary" href="${detail.issue.url}" target="_blank" rel="noreferrer">Open issue ↗</a><button class="button primary" id="run-assurance" ${running ? "disabled" : ""}><span class="button-spark">◇</span>${running ? "Agents running…" : run ? "Run again" : "Start blind replay"}</button></div>
@@ -332,7 +334,7 @@ async function startRun() {
   renderAssurance(state.data);
   toast("<strong>Evidence sealed.</strong> Five-agent blind replay started.");
   try {
-    const response = await fetch("/api/assurance-runs?change_id=K8S-29297", {method: "POST"});
+    const response = await fetch(appUrl("/api/assurance-runs?change_id=K8S-29297"), {method: "POST"});
     if (!response.ok) throw new Error(`Start failed (${response.status})`);
     const created = await response.json();
     await pollRun(created.run_id);
@@ -346,7 +348,7 @@ async function startRun() {
 
 async function pollRun(runId) {
   while (state.polling) {
-    const response = await fetch(`/api/assurance-runs/${encodeURIComponent(runId)}`, {cache: "no-store"});
+    const response = await fetch(appUrl(`/api/assurance-runs/${encodeURIComponent(runId)}`), {cache: "no-store"});
     if (!response.ok) throw new Error(`Run fetch failed (${response.status})`);
     state.run = await response.json();
     renderAssurance(state.data);
@@ -387,9 +389,9 @@ async function init() {
   menu?.addEventListener("click", () => document.getElementById("sidebar").classList.toggle("open"));
   try {
     const [platformResponse, runsResponse, ledgerResponse] = await Promise.all([
-      fetch("/api/platform"),
-      fetch("/api/assurance-runs", {cache: "no-store"}),
-      fetch("/api/learning-ledger", {cache: "no-store"}),
+      fetch(appUrl("/api/platform")),
+      fetch(appUrl("/api/assurance-runs"), {cache: "no-store"}),
+      fetch(appUrl("/api/learning-ledger"), {cache: "no-store"}),
     ]);
     if (!platformResponse.ok) throw new Error("Platform context unavailable");
     state.data = await platformResponse.json();

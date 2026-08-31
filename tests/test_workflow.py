@@ -4,11 +4,14 @@ import json
 
 import pytest
 from fastapi.testclient import TestClient
+from flask import Request
+from werkzeug.test import EnvironBuilder
 
 from app.config import get_settings
 from app.main import app
 from app.store import MemoryStore
 from app.workflow import create_run, execute_run
+from main import groundtruth_web
 
 
 @pytest.mark.asyncio
@@ -52,6 +55,19 @@ def test_health_and_platform_shell() -> None:
     assert "Assurance workspace" in page.text
     assert 'href="/static/platform.css"' in page.text
     assert 'src="/static/platform.js"' in page.text
+
+
+def test_cloud_function_adapter_and_public_base_path(monkeypatch) -> None:
+    monkeypatch.setenv("PUBLIC_BASE_PATH", "/groundtruth-web")
+    request = Request(EnvironBuilder(path="/", method="GET").get_environ())
+
+    response = groundtruth_web(request)
+    page = response.get_data(as_text=True)
+
+    assert response.status_code == 200
+    assert 'data-base-path="/groundtruth-web"' in page
+    assert 'href="/groundtruth-web/static/platform.css"' in page
+    assert 'src="/groundtruth-web/static/platform.js"' in page
 
 
 def test_all_platform_pages_and_payload_are_available() -> None:

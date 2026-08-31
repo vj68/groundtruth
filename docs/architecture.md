@@ -124,14 +124,16 @@ serves as the flagship proof inside the platform.
 
 ## Cloud topology
 
-- Cloud Run service: `groundtruth`, `us-central1`, public, 0–2 instances.
-- Firebase Hosting: `groundtruth-507213.web.app`, rewritten to Cloud Run.
+- Public HTTP function: `groundtruth-web`, `us-central1`, Python 3.12, 1024 MiB, 300-second timeout.
+- Firebase Hosting: `groundtruth-507213.web.app`, a stable landing URL for the function.
+- Cloud Run services: the same containerized FastAPI application, deployed in `us-central1`.
 - Vertex endpoint: `global`; model: `gemini-3.5-flash`.
 - Firestore Native: durable assurance runs.
 - Pub/Sub topic: asynchronous evidence/incident trigger.
 - Cloud Build and Artifact Registry: source deployment.
 - Runtime identity: `groundtruth-runtime@groundtruth-507213.iam.gserviceaccount.com`.
 
-Cloud Run uses instance-based CPU because an accepted asynchronous ADK run must continue after
-the initiating HTTP response. It still scales to zero, and maximum instances remain capped at
-two.
+The public function executes an assurance replay synchronously inside its request lifecycle,
+then returns the durable Firestore run ID. The browser can immediately load the completed trace.
+The Cloud Run deployment uses instance-based CPU for its asynchronous route and remains capped at
+two instances.

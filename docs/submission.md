@@ -72,6 +72,7 @@ GroundTruth creates a closed learning loop:
 
 - Gemini 3.5 Flash on Vertex AI;
 - Google Agent Development Kit 2.8 with five structured specialist agents;
+- Google Cloud Functions for the public application and durable live replay;
 - Cloud Run;
 - Firebase Hosting;
 - Firestore Native;
@@ -116,7 +117,11 @@ synthetic concept data and labeled as such.
 3. Learning ledger screenshot with the verified hash chain.
 4. Two-minute narrated walkthrough from `docs/demo-script.md`.
 5. Architecture diagram generated from `docs/architecture.md`.
-6. Public repository and Firebase Hosting URL.
+6. Public repository and live Firebase landing URL.
+
+Verified production evidence: run `assure_ef7e404586` completed in
+`vertex-adk:gemini-3.5-flash` mode with five structured agent outputs, a 4/4 exact historical
+scope match, three trusted proof evaluations, and a valid four-event ledger chain.
 
 ## Closing line
 

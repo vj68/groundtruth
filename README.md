@@ -8,6 +8,9 @@ capability—so a known mistake does not have to become another team's incident.
 
 **Live demo:** [groundtruth-507213.web.app](https://groundtruth-507213.web.app)
 
+**Verified production run:** `assure_ef7e404586` · Vertex/ADK · 4/4 exact scope match · valid
+four-event ledger chain.
+
 ## The problem
 
 AI is increasing the rate of software change faster than organizations increase the rate of
@@ -128,8 +131,9 @@ superseding evidence must become new events, preserving the institution's reason
 - **Gemini 3.5 Flash** on Vertex AI's global endpoint.
 - **Google Agent Development Kit 2.8** with five `LlmAgent` specialists inside a real
   `SequentialAgent` and structured Pydantic outputs.
-- **Cloud Run** for the FastAPI application and asynchronous assurance workflow.
-- **Firebase Hosting** for the stable public front door.
+- **Google Cloud Functions** for the public FastAPI application and synchronous five-agent replay.
+- **Cloud Run** for the containerized application deployment.
+- **Firebase Hosting** for the stable public landing URL.
 - **Firestore Native** for durable assurance runs.
 - **Pub/Sub** for asynchronous evidence/incident triggers.
 - **Cloud Build + Artifact Registry** for reproducible deployment.
@@ -163,6 +167,22 @@ aliasing/fresh-object behavior, hash-chain integrity, API routes, and the full w
 
 ## Deploy
 
+The public demo uses the root `main.py` adapter to serve the same FastAPI application through a
+first-generation HTTP function. This runtime holds an assurance request until its durable run is
+complete, avoiding background-work freezing on serverless request completion.
+
+```bash
+gcloud functions deploy groundtruth-web \
+  --no-gen2 --runtime=python312 --region=us-central1 \
+  --project=groundtruth-507213 --source=. --entry-point=groundtruth_web \
+  --trigger-http --allow-unauthenticated \
+  --service-account=groundtruth-runtime@groundtruth-507213.iam.gserviceaccount.com \
+  --timeout=300s --memory=1024MB \
+  --set-env-vars='GOOGLE_CLOUD_LOCATION=global,MODEL=gemini-3.5-flash,ENABLE_GEMINI=true,USE_VERTEX=true,USE_FIRESTORE=true,PUBLIC_BASE_PATH=/groundtruth-web,SYNCHRONOUS_ASSURANCE=true'
+```
+
+The same source remains container-deployable:
+
 ```bash
 gcloud run deploy groundtruth \
   --source=. \
@@ -185,6 +205,7 @@ app/assurance_workflow.py     blind replay, reveal, verification, propagation
 app/learning_ledger.py        append-only SHA-256 event chain
 app/platform_data.py          generic organization and platform concept model
 app/main.py                   FastAPI pages, APIs, Pub/Sub entrypoint
+main.py                       Cloud Functions adapter for the same ASGI application
 templates/platform.html       multi-page application shell
 static/platform.*             platform interaction and visual system
 tests/test_blind_replay.py    evidence-boundary and end-to-end proof

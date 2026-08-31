@@ -9,26 +9,26 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/static/platform.css">
+  <link rel="stylesheet" href="{{ base_path }}/static/platform.css">
 </head>
-<body data-page="{{ page }}">
+<body data-page="{{ page }}" data-base-path="{{ base_path }}">
   <div class="app-shell">
     <aside class="sidebar" id="sidebar">
-      <a class="brand" href="/overview" aria-label="GroundTruth home">
+      <a class="brand" href="{{ base_path }}/overview" aria-label="GroundTruth home">
         <span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i></span>
         <span><strong>GroundTruth</strong><small>Institutional learning control plane</small></span>
       </a>
 
       <nav class="primary-nav" aria-label="Platform navigation">
         <p class="nav-label">Organization</p>
-        <a href="/overview" data-nav="overview"><span class="nav-icon">⌂</span><span>Overview</span></a>
-        <a href="/changes" data-nav="changes"><span class="nav-icon">↗</span><span>Changes</span><b>4</b></a>
-        <a href="/changes/K8S-29297" data-nav="assurance"><span class="nav-icon">◇</span><span>Assurance workspace</span><em></em></a>
+        <a href="{{ base_path }}/overview" data-nav="overview"><span class="nav-icon">⌂</span><span>Overview</span></a>
+        <a href="{{ base_path }}/changes" data-nav="changes"><span class="nav-icon">↗</span><span>Changes</span><b>4</b></a>
+        <a href="{{ base_path }}/changes/K8S-29297" data-nav="assurance"><span class="nav-icon">◇</span><span>Assurance workspace</span><em></em></a>
         <p class="nav-label">Learning system</p>
-        <a href="/memory" data-nav="memory"><span class="nav-icon">▱</span><span>Learning ledger</span></a>
-        <a href="/incidents" data-nav="incidents"><span class="nav-icon">◎</span><span>Incidents & learning</span></a>
-        <a href="/capability" data-nav="capability"><span class="nav-icon">△</span><span>People & capability</span></a>
-        <a href="/outcomes" data-nav="outcomes"><span class="nav-icon">⌁</span><span>Verified value</span></a>
+        <a href="{{ base_path }}/memory" data-nav="memory"><span class="nav-icon">▱</span><span>Learning ledger</span></a>
+        <a href="{{ base_path }}/incidents" data-nav="incidents"><span class="nav-icon">◎</span><span>Incidents & learning</span></a>
+        <a href="{{ base_path }}/capability" data-nav="capability"><span class="nav-icon">△</span><span>People & capability</span></a>
+        <a href="{{ base_path }}/outcomes" data-nav="outcomes"><span class="nav-icon">⌁</span><span>Verified value</span></a>
       </nav>
 
       <div class="sidebar-principle">
@@ -64,6 +64,6 @@
     </section>
   </div>
   <div class="toast-region" id="toast-region" aria-live="polite"></div>
-  <script src="/static/platform.js" defer></script>
+  <script src="{{ base_path }}/static/platform.js" defer></script>
 </body>
 </html>

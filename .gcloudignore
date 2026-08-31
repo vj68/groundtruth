@@ -1,0 +1,14 @@
+.gcloudignore
+.git
+.gitignore
+.pytest_cache
+.ruff_cache
+.venv
+.playwright-cli
+BLOCKERS.md
+Dockerfile
+docs
+hosting
+output
+tests
+uv.lock

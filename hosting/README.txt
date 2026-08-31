@@ -1,1 +1,1 @@
-GroundTruth is served by the Cloud Run rewrite configured in firebase.json.
+GroundTruth's stable landing page opens the production Google Cloud Functions endpoint.

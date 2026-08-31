@@ -3,6 +3,7 @@ from __future__ import annotations
 import asyncio
 import base64
 import json
+import os
 
 from fastapi import FastAPI, HTTPException, Request
 from fastapi.responses import HTMLResponse
@@ -39,6 +40,7 @@ PLATFORM_PAGES = {
 
 
 def platform_page(request: Request, page: str) -> HTMLResponse:
+    base_path = os.getenv("PUBLIC_BASE_PATH", "").rstrip("/")
     return templates.TemplateResponse(
         request=request,
         name="platform.html",
@@ -46,6 +48,7 @@ def platform_page(request: Request, page: str) -> HTMLResponse:
             "page": page,
             "page_title": PLATFORM_PAGES[page],
             "organization": platform_payload()["organization"],
+            "base_path": base_path,
         },
     )
 
@@ -140,6 +143,12 @@ async def start_assurance(change_id: str = "K8S-29297") -> dict[str, str]:
     except ValueError as exc:
         raise HTTPException(status_code=404, detail=str(exc)) from exc
     store.create(run)
+    if os.getenv("SYNCHRONOUS_ASSURANCE", "").lower() in {"1", "true", "yes"}:
+        # First-generation functions freeze background work after the response.
+        # Holding this request keeps the five-agent replay reliable on that runtime.
+        await execute_assurance(run.id, store)
+        completed = store.get(run.id)
+        return {"run_id": run.id, "status": completed.status if completed else run.status}
     asyncio.create_task(execute_assurance(run.id, store))
     return {"run_id": run.id, "status": run.status}
 

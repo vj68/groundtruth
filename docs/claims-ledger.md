@@ -18,8 +18,8 @@ This ledger prevents the demo from outrunning its evidence.
 | Ledger exposes no update/delete operation | Verified | Public `LearningLedger` API and tests | Storage administrator controls are outside this PoC |
 | All automated tests pass | Verified | `62 passed`; Ruff clean | Test suite is repository-specific |
 | All seven platform routes render | Verified | FastAPI tests plus Playwright desktop/mobile walkthrough | Chrome/Playwright browser coverage |
-| Browser console is clean | Verified | Playwright console check: zero errors/warnings | Local production-like run |
-| Public cloud path works end to end | Previously verified, redeployment pending | Firebase Hosting → Cloud Run → Vertex → Firestore | Must be reverified for the rebuilt revision |
+| Browser console is clean | Verified | Playwright against the public deployment: zero errors/warnings | Chromium coverage |
+| Public cloud path works end to end | Verified | Production run `assure_ef7e404586`: Cloud Functions → Vertex/ADK → trusted evaluators → Firestore | One flagship benchmark |
 | NSTR-204 is a real production PR | **Not claimed** | Explicitly labeled synthetic concept data | Demonstrates future enforcement only |
 | Northstar metrics represent a real company | **Not claimed** | UI and documentation disclosure | Synthetic organizational model |
 | GroundTruth prevents every recurring bug | **Not claimed** | One exact historical benchmark | Requires broad longitudinal evaluation |
