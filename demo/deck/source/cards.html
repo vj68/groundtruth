@@ -7,6 +7,7 @@
   <style>
     @import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap');
     *{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#0c1712;color:#f5f8f3;font-family:Manrope,Arial,sans-serif}.scene{display:none;width:1920px;height:1080px;padding:86px 104px;position:relative;background:radial-gradient(circle at 78% 18%,#1b3f2d 0,transparent 34%),linear-gradient(135deg,#0b1711,#12261b 64%,#0b1510)}.scene.active{display:flex;flex-direction:column}.grid{position:absolute;inset:0;opacity:.07;background-image:linear-gradient(#d7f78a 1px,transparent 1px),linear-gradient(90deg,#d7f78a 1px,transparent 1px);background-size:48px 48px}.brand{display:flex;align-items:center;gap:16px;font-weight:800;font-size:26px;z-index:2}.mark{display:flex;gap:5px;align-items:flex-end}.mark i{display:block;width:8px;border-radius:2px;background:#c9f36f}.mark i:nth-child(1){height:16px}.mark i:nth-child(2){height:27px}.mark i:nth-child(3){height:21px}.kicker{font:500 19px DM Mono,monospace;letter-spacing:.13em;text-transform:uppercase;color:#c9f36f}.hero{font-size:76px;line-height:1.03;letter-spacing:-.045em;margin:46px 0 20px;max-width:1450px}.sub{font-size:28px;line-height:1.48;color:#c8d1cb;max-width:1370px}.source{margin-top:auto;font:400 17px DM Mono,monospace;color:#90a299}.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:56px}.card{background:#f5f7f2;color:#14231a;padding:32px;border-radius:20px;min-height:240px;border:1px solid #d8e2d8}.card small{font:500 17px DM Mono,monospace;color:#557061;text-transform:uppercase}.card strong{display:block;font-size:65px;letter-spacing:-.05em;margin:12px 0}.card p{font-size:20px;line-height:1.4;margin:0;color:#4d5f54}.card.alert{background:#fff2ea;border-color:#f7c2a8}.card.alert strong{color:#b13b21}.flow{display:flex;align-items:stretch;gap:12px;margin-top:72px}.node{flex:1;background:#f6f8f3;color:#14231a;border-radius:18px;padding:26px 22px;min-height:170px;display:flex;flex-direction:column;justify-content:space-between}.node b{font-size:24px}.node span{font:500 15px DM Mono;color:#557061}.arrow{display:grid;place-items:center;font-size:32px;color:#c9f36f}.proof{margin-top:70px;display:grid;grid-template-columns:1.2fr .8fr;gap:30px}.proofbox{border:1px solid #42634f;background:#13271c;border-radius:24px;padding:42px}.proofbox strong{font-size:92px;letter-spacing:-.07em;color:#c9f36f}.proofbox p{font-size:25px;color:#c9d4cd}.paths{display:grid;gap:12px;margin-top:24px}.path{padding:14px 18px;background:#f6f8f3;color:#183022;border-radius:10px;font:500 18px DM Mono}.arch{display:grid;grid-template-columns:repeat(5,1fr);gap:16px;margin-top:65px;align-items:stretch}.archbox{border:1px solid #42634f;border-radius:18px;padding:28px 20px;background:#14271c;min-height:170px}.archbox em{font:500 15px DM Mono;color:#c9f36f}.archbox b{display:block;font-size:24px;margin:13px 0}.archbox span{color:#9fb0a5;font-size:17px;line-height:1.4}.close{justify-content:center;align-items:flex-start}.close .hero{font-size:104px;max-width:1550px}.url{margin-top:40px;padding:18px 24px;border:1px solid #557664;border-radius:10px;font:500 20px DM Mono;color:#c9f36f}.disclosure{position:absolute;right:100px;bottom:74px;font:400 16px DM Mono;color:#83968a}.tag{display:inline-flex;padding:8px 13px;border-radius:999px;background:#c9f36f;color:#15251a;font:600 15px DM Mono;margin-top:24px}
+    .architecture-scene{padding:52px 74px 46px}.architecture-scene .brand{font-size:23px}.architecture-scene .kicker{margin-top:24px!important;font-size:15px}.architecture-scene .hero{font-size:48px;margin:12px 0 5px;letter-spacing:-.035em}.architecture-scene .arch-sub{margin:0;color:#aebdb4;font-size:18px}.system-map{position:relative;z-index:2;display:grid;grid-template-columns:270px 26px 388px 26px 410px 26px 326px;grid-template-rows:400px 178px;gap:18px 12px;margin-top:26px}.sys-zone{position:relative;border:1px solid #3e5f4c;border-radius:18px;background:rgba(13,31,21,.91);padding:20px}.sys-zone::before{content:attr(data-label);position:absolute;top:-10px;left:16px;background:#0e1d15;padding:2px 9px;color:#9fb3a5;font:500 12px DM Mono;letter-spacing:.09em;text-transform:uppercase}.signals{grid-column:1;grid-row:1}.runtime{grid-column:3;grid-row:1;border-color:#548aca;box-shadow:inset 0 0 0 1px rgba(84,138,202,.12)}.agents{grid-column:5;grid-row:1;border-color:#74b780;box-shadow:inset 0 0 0 1px rgba(116,183,128,.12)}.trust{grid-column:7;grid-row:1;border-color:#d9a93a;box-shadow:inset 0 0 0 1px rgba(217,169,58,.14)}.sys-arrow{display:grid;place-items:center;color:#c9f36f;font-size:31px;font-weight:700}.arrow-a{grid-column:2;grid-row:1}.arrow-b{grid-column:4;grid-row:1}.arrow-c{grid-column:6;grid-row:1}.zone-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:15px}.zone-head b{font-size:21px}.zone-head span{font:500 11px DM Mono;color:#c9f36f;border:1px solid #547059;border-radius:99px;padding:5px 8px}.sys-card{background:#f3f7f1;color:#14241a;border-radius:10px;padding:13px 14px;margin-top:9px;border:1px solid #d8e4d8}.sys-card b{display:block;font-size:16px;margin-bottom:3px}.sys-card span{display:block;color:#587063;font-size:12px;line-height:1.3}.runtime .sys-card{background:#eaf3fc;border-color:#bad3ee}.agents .sys-card{background:#eaf7ed;border-color:#b9ddbf}.trust .sys-card{background:#fff4d9;border-color:#ead49e}.mini-flow{display:flex;gap:5px;align-items:center;margin:10px 0}.mini-flow i{font-style:normal;flex:1;text-align:center;border:1px solid #9fcaab;background:#f2fbf3;color:#1c4b2b;border-radius:7px;padding:8px 3px;font:600 11px DM Mono}.mini-flow strong{color:#7ca585;font-size:13px}.boundary-note{margin-top:10px;border-top:1px dashed #6f8a77;padding-top:9px;color:#aebdb4;font:400 11px DM Mono;line-height:1.35}.memory{grid-column:3/8;grid-row:2;display:grid;grid-template-columns:350px 26px 1fr;align-items:center;border-color:#aa8bd3;padding:18px 20px}.memory::before{color:#d8c2f1}.memory .memory-core{background:#f4edfb;color:#251b31;border:1px solid #ceb9e3;border-radius:12px;padding:16px}.memory .memory-core b{display:block;font-size:18px}.memory .memory-core span{display:block;font:400 12px DM Mono;color:#6b547c;margin-top:4px}.memory-arrow{text-align:center;color:#c9f36f;font-size:27px}.outcomes{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}.outcome{min-height:104px;border:1px solid #557261;border-radius:11px;padding:13px;background:#162b1e}.outcome b{display:block;color:#eef6ef;font-size:15px}.outcome span{display:block;color:#9eb1a5;font-size:12px;line-height:1.28;margin-top:5px}.feedback-loop{grid-column:1;grid-row:2;border:1px dashed #75907e;border-radius:16px;padding:18px;background:rgba(15,34,23,.76);display:flex;flex-direction:column;justify-content:center}.feedback-loop b{font-size:17px;color:#c9f36f}.feedback-loop span{margin-top:7px;font-size:13px;line-height:1.4;color:#aebdb4}.feedback-loop em{font:500 12px DM Mono;color:#d6e0d9;margin-top:10px}.arch-legend{position:absolute;right:74px;top:57px;display:flex;gap:14px;font:500 11px DM Mono;color:#9eb0a4}.arch-legend span::before{content:"";display:inline-block;width:8px;height:8px;border-radius:2px;margin-right:5px}.arch-legend .l-ai::before{background:#74b780}.arch-legend .l-trust::before{background:#d9a93a}.arch-legend .l-state::before{background:#aa8bd3}.architecture-scene .source{position:absolute;left:74px;bottom:22px;font-size:12px}
   </style>
 </head>
 <body>
@@ -16,7 +17,73 @@
 
   <section class="scene" data-scene="proof"><div class="grid"></div><div class="brand"><span class="mark"><i></i><i></i><i></i></span>GroundTruth</div><div class="kicker" style="margin-top:64px">Independent historical answer key</div><h1 class="hero">One reported failure.<br>Three proactive sibling exposures.</h1><div class="proof"><div class="proofbox"><strong>4 / 4</strong><p>blind findings exactly match the later Kubernetes fix</p><span class="tag">100% precision · 100% recall</span></div><div class="paths"><div class="path">ConfigMap · observed</div><div class="path">Secret · proactively found</div><div class="path">Downward API · proactively found</div><div class="path">GitRepo · proactively found</div></div></div><div class="source">WITHHELD UNTIL REVEAL · kubernetes/kubernetes PR #29641</div></section>
 
-  <section class="scene" data-scene="architecture"><div class="grid"></div><div class="brand"><span class="mark"><i></i><i></i><i></i></span>GroundTruth</div><div class="kicker" style="margin-top:66px">Real Google Cloud architecture</div><h1 class="hero">Agents reason. Trusted systems verify.</h1><div class="arch"><div class="archbox"><em>01 · MODEL</em><b>Gemini 3.5 Flash</b><span>Causal reasoning and bounded structured artifacts</span></div><div class="archbox"><em>02 · ORCHESTRATION</em><b>Google ADK</b><span>Five specialist LLM agents in a sequential workflow</span></div><div class="archbox"><em>03 · RUNTIME</em><b>Cloud Functions</b><span>Public FastAPI workflow on Google Cloud</span></div><div class="archbox"><em>04 · STATE</em><b>Firestore</b><span>Durable assurance runs and evidence-linked outcomes</span></div><div class="archbox"><em>05 · AUTHORITY</em><b>Trusted evaluators</b><span>Structural scan, reproducer, answer-key comparison</span></div></div><div class="source">PRODUCTION RUN · assure_ef7e404586 · vertex-adk:gemini-3.5-flash</div></section>
+  <section class="scene architecture-scene" data-scene="architecture">
+    <div class="grid"></div>
+    <div class="brand"><span class="mark"><i></i><i></i><i></i></span>GroundTruth</div>
+    <div class="arch-legend"><span class="l-ai">AGENTIC REASONING</span><span class="l-trust">DETERMINISTIC AUTHORITY</span><span class="l-state">DURABLE MEMORY</span></div>
+    <div class="kicker">End-to-end system design · Google Cloud</div>
+    <h1 class="hero">From one failure to organization-wide value.</h1>
+    <p class="arch-sub">AI proposes. Trusted code proves. Verified learning becomes memory, prevention, capability, and measurable outcomes.</p>
+
+    <div class="system-map">
+      <div class="sys-zone signals" data-label="01 · Engineering signals">
+        <div class="zone-head"><b>Evidence enters</b><span>GENERIC</span></div>
+        <div class="sys-card"><b>Changes &amp; pull requests</b><span>Diffs · tests · ownership · dependency context</span></div>
+        <div class="sys-card"><b>Incidents &amp; telemetry</b><span>Issues · logs · postmortems · customer impact</span></div>
+        <div class="sys-card"><b>Organizational memory</b><span>Prior controls · failure classes · capability gaps</span></div>
+        <div class="boundary-note">Every run begins with a bounded, evidence-cited packet.</div>
+      </div>
+
+      <div class="sys-arrow arrow-a">→</div>
+
+      <div class="sys-zone runtime" data-label="02 · Runtime &amp; evidence boundary">
+        <div class="zone-head"><b>Google Cloud control plane</b><span>LIVE</span></div>
+        <div class="sys-card"><b>Firebase Hosting</b><span>Public multi-page platform and stable entry point</span></div>
+        <div class="sys-card"><b>FastAPI · Cloud Functions / Cloud Run</b><span>Orchestrates assurance runs; synchronous + async routes</span></div>
+        <div class="sys-card"><b>Pub/Sub trigger</b><span>Change and incident events with at-least-once delivery</span></div>
+        <div class="sys-card"><b>Sealed evidence packet</b><span>Source excerpts, constraints, citations; answer key excluded</span></div>
+      </div>
+
+      <div class="sys-arrow arrow-b">→</div>
+
+      <div class="sys-zone agents" data-label="03 · Agentic reasoning plane">
+        <div class="zone-head"><b>Google ADK SequentialAgent</b><span>VERTEX AI</span></div>
+        <div class="mini-flow"><i>INVESTIGATE</i><strong>›</strong><i>CAUSE</i><strong>›</strong><i>PATTERN</i></div>
+        <div class="mini-flow"><i>ADVERSARY</i><strong>›</strong><i>LEARNING</i></div>
+        <div class="sys-card"><b>Gemini 3.5 Flash</b><span>Evidence-bounded causal reasoning and typed artifacts</span></div>
+        <div class="sys-card"><b>Structured agent state</b><span>Pydantic schemas + ADK output keys pass verified context forward</span></div>
+        <div class="boundary-note">Agents can hypothesize and design falsifiers. They cannot certify their own claims.</div>
+      </div>
+
+      <div class="sys-arrow arrow-c">→</div>
+
+      <div class="sys-zone trust" data-label="04 · Trusted evaluation boundary">
+        <div class="zone-head"><b>Proof before authority</b><span>CODE</span></div>
+        <div class="sys-card"><b>Structural scope scan</b><span>Complete causal signature—not keyword similarity</span></div>
+        <div class="sys-card"><b>Deterministic reproducer</b><span>Vulnerable interleaving + passing safe control</span></div>
+        <div class="sys-card"><b>Ground-truth judge</b><span>Frozen findings compared only after withheld reveal</span></div>
+        <div class="sys-card"><b>Ledger verifier</b><span>Canonical hashes + previous-hash chain integrity</span></div>
+      </div>
+
+      <div class="feedback-loop">
+        <b>Continuous feedback loop ↻</b>
+        <span>New outcomes and recurrences become the next evidence—without erasing history.</span>
+        <em>OBSERVE → PROVE → INSTITUTIONALIZE → MEASURE</em>
+      </div>
+
+      <div class="sys-zone memory" data-label="05 · Institutional memory &amp; value compounding">
+        <div class="memory-core"><b>Firestore + append-only learning ledger</b><span>assurance runs · cited evidence · verified failure classes · controls · hash-linked events</span></div>
+        <div class="memory-arrow">→</div>
+        <div class="outcomes">
+          <div class="outcome"><b>Systemic propagation</b><span>Scan sibling modules, products, and teams</span></div>
+          <div class="outcome"><b>Prevent recurrence</b><span>CI guardrails, tests, review and ownership controls</span></div>
+          <div class="outcome"><b>Grow human capability</b><span>Transparent coaching and team learning plans</span></div>
+          <div class="outcome"><b>Verify value</b><span>Resilience, customer impact, avoided cost, uncertainty</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="source">IMPLEMENTED CORE · Firebase Hosting · Cloud Functions / Cloud Run · Vertex AI + Google ADK · Firestore · Pub/Sub · deterministic evaluators</div>
+  </section>
 
   <section class="scene close" data-scene="close"><div class="grid"></div><div class="brand"><span class="mark"><i></i><i></i><i></i></span>GroundTruth</div><div class="kicker" style="margin-top:76px">The timeless principle</div><h1 class="hero">One team learns.<br>The whole organization gets stronger.<br><span style="color:#c9f36f">Value compounds.</span></h1><p class="sub">Executable organizational learning for AI-native engineering.</p><div class="url">groundtruth-507213.web.app</div><div class="disclosure">Built for the All Things Agentic Hackathon · Gemini + Google ADK + Google Cloud</div></section>
 
