@@ -17,3 +17,15 @@ artifacts/runs/*
 local-data/
 .playwright-cli/
 output/playwright/
+demo/audio/voice/generated/
+demo/audio/master.wav
+demo/audio/processed/
+demo/assets/screenshots/
+demo/capture/raw/
+demo/deck/contact-sheet.png
+demo/deck/rendered/
+demo/final/*.mp4
+demo/final/*.png
+demo/qa/
+demo/visuals/visual-master.mp4
+demo/visuals/scenes/

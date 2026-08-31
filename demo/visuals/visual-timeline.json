@@ -1,0 +1,79 @@
+{
+  "duration": 231.512542,
+  "shots": [
+    {
+      "id": "01-problem",
+      "kind": "still",
+      "src": "demo/deck/rendered/problem.png",
+      "duration": 26.38825
+    },
+    {
+      "id": "02-overview",
+      "kind": "still",
+      "src": "demo/assets/screenshots/01-overview.png",
+      "duration": 16.972813000000002
+    },
+    {
+      "id": "03-loop",
+      "kind": "still",
+      "src": "demo/deck/rendered/loop.png",
+      "duration": 13.339125000000003
+    },
+    {
+      "id": "04-real-input",
+      "kind": "video",
+      "src": "demo/capture/raw/authentic-product-tour.webm",
+      "sourceStart": 4,
+      "duration": 18.346875000000004
+    },
+    {
+      "id": "05-agents",
+      "kind": "video",
+      "src": "demo/capture/raw/authentic-product-tour.webm",
+      "sourceStart": 19.2,
+      "duration": 25.49997900000001
+    },
+    {
+      "id": "06-proof",
+      "kind": "still",
+      "src": "demo/assets/screenshots/03-agent-trace.png",
+      "duration": 23.077167000000003
+    },
+    {
+      "id": "07-reveal",
+      "kind": "still",
+      "src": "demo/deck/rendered/proof.png",
+      "duration": 22.94658299999999
+    },
+    {
+      "id": "08-memory",
+      "kind": "still",
+      "src": "demo/assets/screenshots/04-blast-radius.png",
+      "duration": 21.622895999999997
+    },
+    {
+      "id": "09-people",
+      "kind": "still",
+      "src": "demo/assets/screenshots/08-capability.png",
+      "duration": 15.96377099999998
+    },
+    {
+      "id": "10a-architecture",
+      "kind": "still",
+      "src": "demo/deck/rendered/architecture.png",
+      "duration": 8
+    },
+    {
+      "id": "10b-cloud",
+      "kind": "cloud",
+      "src": "demo/assets/screenshots/10-google-cloud-function.png",
+      "duration": 20.489603999999986
+    },
+    {
+      "id": "11-close",
+      "kind": "still",
+      "src": "demo/deck/rendered/close.png",
+      "duration": 18.865479000000022
+    }
+  ]
+}

@@ -1,0 +1,3 @@
+eff88ff298ebfae9914b3db03356be5b18cc371af8b2fe610d031f0d53e73449  demo/final/groundtruth-demo-clean.mp4
+030ad04bb0e9f38600dc6c942dbad5c6b9bcf89fd479564a20281a1cf76e2c49  demo/final/groundtruth-demo-captioned.mp4
+d8413f0a0f791c7139f61001ab25a7ad4b96f8470ac756dea1c2672cd29b2424  demo/final/thumbnail.png

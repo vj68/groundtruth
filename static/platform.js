@@ -59,7 +59,7 @@ function renderOverview(data) {
   root.innerHTML = `
     ${pageHead(
       "Organizational immune system",
-      "Speed is compounding. Is learning?",
+      "Speed is compounding. Is value compounding?",
       "GroundTruth turns verified engineering failures into memory, controls, and capability that propagate across every team and repository."
     )}
     ${metrics(org.metrics)}

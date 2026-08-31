@@ -1,0 +1,94 @@
+{
+  "gap": 0.45,
+  "duration": 231.512542,
+  "scenes": [
+    {
+      "id": "01-value-paradox",
+      "start": 0,
+      "end": 25.93825,
+      "duration": 25.93825,
+      "gap_after": 0.45,
+      "text": "AI is everywhere in software engineering. But faster output is not the same as more value. Google Cloud's DORA research found that over seventy-five percent of respondents already used AI in daily work. Yet a twenty-five percent rise in adoption was associated with lower delivery throughput—and seven-point-two percent lower stability. Local speed did not automatically become system-level value."
+    },
+    {
+      "id": "02-product-promise",
+      "start": 26.38825,
+      "end": 42.911063,
+      "duration": 16.522813,
+      "gap_after": 0.45,
+      "text": "That is the gap GroundTruth is built to close. It is an institutional learning control plane for AI-native engineering: not another code generator, and not another dashboard. Its job is to make value, quality, judgment, and organizational capability compound with AI velocity."
+    },
+    {
+      "id": "03-loop",
+      "start": 43.361063,
+      "end": 56.250188,
+      "duration": 12.889125,
+      "gap_after": 0.45,
+      "text": "The loop is simple: observe a failure, reconstruct its cause, search the entire organization for the same mechanism, prove the exposure, preserve the learning, and act on the next change before customers pay for the same mistake again."
+    },
+    {
+      "id": "04-sealed-evidence",
+      "start": 56.700188000000004,
+      "end": 74.597063,
+      "duration": 17.896875,
+      "gap_after": 0.45,
+      "text": "Here is the flagship proof. Kubernetes issue twenty-nine-two-nine-seven reported intermittent ConfigMap mount failures. GroundTruth receives the real issue and source from a pinned pre-fix commit. The eventual fixing pull request, maintainer explanation, and four-file patch scope are sealed. The agents cannot see the answer."
+    },
+    {
+      "id": "05-agents",
+      "start": 75.04706300000001,
+      "end": 100.09704200000002,
+      "duration": 25.049979,
+      "gap_after": 0.45,
+      "text": "Five Gemini agents run through Google ADK. The Evidence Investigator separates observations from hypotheses. The Causal Analyst identifies a shallow copy with a shared nested pointer. The Pattern Scout searches beyond the reported component. The Adversary designs a falsifying interleaving. And the Learning Architect turns verified evidence into code controls, process changes, and human development. Each handoff is structured and attributable."
+    },
+    {
+      "id": "06-proof",
+      "start": 100.54704200000002,
+      "end": 123.17420900000002,
+      "duration": 22.627167,
+      "gap_after": 0.45,
+      "text": "But an agent does not get to declare itself correct. Deterministic evaluators require the complete causal signature. Then a controlled interleaving proves the failure: mount A writes its name; mount B overwrites the same nested object; mount A reads B's name. A fresh-object control passes. Models propose. Evidence decides."
+    },
+    {
+      "id": "07-reveal",
+      "start": 123.62420900000002,
+      "end": 146.12079200000002,
+      "duration": 22.496583,
+      "gap_after": 0.45,
+      "text": "Starting from one ConfigMap incident, GroundTruth identifies three proactive sibling exposures: Secret, Downward API, and GitRepo. Only now is Kubernetes pull request twenty-nine-six-four-one unsealed. The four independently discovered paths are exactly the four paths later changed by the maintainers: one hundred percent precision, one hundred percent recall."
+    },
+    {
+      "id": "08-memory",
+      "start": 146.570792,
+      "end": 167.74368800000002,
+      "duration": 21.172896,
+      "gap_after": 0.45,
+      "text": "This verified lesson becomes an append-only, SHA-two-fifty-six hash chain: hypothesis recorded, evidence verified, ground truth confirmed, control attached. The control then blocks a synthetic future Northstar change carrying the same causal pattern. The future example is clearly labeled; the Kubernetes evidence and production agent run are real."
+    },
+    {
+      "id": "09-people-value",
+      "start": 168.193688,
+      "end": 183.707459,
+      "duration": 15.513771,
+      "gap_after": 0.45,
+      "text": "GroundTruth does not rank engineers or infer incompetence. It turns the case into a teach-back on pointer ownership, shared review guidance, and team-level knowledge coverage. The goal is not more activity. It is better systems, stronger judgment, resilient products, and verified value."
+    },
+    {
+      "id": "10-google-cloud",
+      "start": 184.157459,
+      "end": 212.19706299999999,
+      "duration": 28.039604,
+      "gap_after": 0.45,
+      "text": "This is running on Google Cloud. Gemini three-point-five Flash powers five structured ADK agents. The FastAPI workflow runs in a Google Cloud Function, Firestore preserves assurance runs, and trusted evaluators own the verification boundary. The console shows the active production function, version four, and real invocation metrics. The full public run is persisted as assure E F seven E four zero four five eight six."
+    },
+    {
+      "id": "11-close",
+      "start": 212.64706299999997,
+      "end": 231.51254199999997,
+      "duration": 18.865479,
+      "gap_after": 0,
+      "text": "AI will keep changing. The principle will not: excellent organizations turn experience into shared capability, protect future value, and help their people build better systems next time. GroundTruth. One team learns. The whole organization gets stronger—and value compounds."
+    }
+  ]
+}

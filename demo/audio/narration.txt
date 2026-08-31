@@ -1,0 +1,21 @@
+AI is everywhere in software engineering. But faster output is not the same as more value. Google Cloud's DORA research found that over seventy-five percent of respondents already used AI in daily work. Yet a twenty-five percent rise in adoption was associated with lower delivery throughput—and seven-point-two percent lower stability. Local speed did not automatically become system-level value.
+
+That is the gap GroundTruth is built to close. It is an institutional learning control plane for AI-native engineering: not another code generator, and not another dashboard. Its job is to make value, quality, judgment, and organizational capability compound with AI velocity.
+
+The loop is simple: observe a failure, reconstruct its cause, search the entire organization for the same mechanism, prove the exposure, preserve the learning, and act on the next change before customers pay for the same mistake again.
+
+Here is the flagship proof. Kubernetes issue twenty-nine-two-nine-seven reported intermittent ConfigMap mount failures. GroundTruth receives the real issue and source from a pinned pre-fix commit. The eventual fixing pull request, maintainer explanation, and four-file patch scope are sealed. The agents cannot see the answer.
+
+Five Gemini agents run through Google ADK. The Evidence Investigator separates observations from hypotheses. The Causal Analyst identifies a shallow copy with a shared nested pointer. The Pattern Scout searches beyond the reported component. The Adversary designs a falsifying interleaving. And the Learning Architect turns verified evidence into code controls, process changes, and human development. Each handoff is structured and attributable.
+
+But an agent does not get to declare itself correct. Deterministic evaluators require the complete causal signature. Then a controlled interleaving proves the failure: mount A writes its name; mount B overwrites the same nested object; mount A reads B's name. A fresh-object control passes. Models propose. Evidence decides.
+
+Starting from one ConfigMap incident, GroundTruth identifies three proactive sibling exposures: Secret, Downward API, and GitRepo. Only now is Kubernetes pull request twenty-nine-six-four-one unsealed. The four independently discovered paths are exactly the four paths later changed by the maintainers: one hundred percent precision, one hundred percent recall.
+
+This verified lesson becomes an append-only, SHA-two-fifty-six hash chain: hypothesis recorded, evidence verified, ground truth confirmed, control attached. The control then blocks a synthetic future Northstar change carrying the same causal pattern. The future example is clearly labeled; the Kubernetes evidence and production agent run are real.
+
+GroundTruth does not rank engineers or infer incompetence. It turns the case into a teach-back on pointer ownership, shared review guidance, and team-level knowledge coverage. The goal is not more activity. It is better systems, stronger judgment, resilient products, and verified value.
+
+This is running on Google Cloud. Gemini three-point-five Flash powers five structured ADK agents. The FastAPI workflow runs in a Google Cloud Function, Firestore preserves assurance runs, and trusted evaluators own the verification boundary. The console shows the active production function, version four, and real invocation metrics. The full public run is persisted as assure E F seven E four zero four five eight six.
+
+AI will keep changing. The principle will not: excellent organizations turn experience into shared capability, protect future value, and help their people build better systems next time. GroundTruth. One team learns. The whole organization gets stronger—and value compounds.
