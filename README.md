@@ -1,81 +1,138 @@
 # GroundTruth
 
-> **A postmortem remembers what happened. GroundTruth changes what happens next.**
+> **One team learns. The whole organization gets stronger.**
 
-GroundTruth is an executable organizational-learning system for AI-native engineering. It
-turns one incident into an evidence-backed failure class, creates a preventive behavioral
-control, proves that control against real execution, and automatically applies the verified
-lesson to future changes.
+GroundTruth is an institutional learning control plane for AI-native engineering. It turns
+every verified failure into organization-wide memory, preventive controls, and human
+capability—so a known mistake does not have to become another team's incident.
 
 **Live demo:** [groundtruth-507213.web.app](https://groundtruth-507213.web.app)
 
-## The 90-second story
+## The problem
 
-An AI-generated retry patch passes all 48 existing tests and human review. In production,
-the payment provider captures ₹5,000, its acknowledgement is lost, and the retry uses a new
-idempotency key. The customer is charged twice.
+AI is increasing the rate of software change faster than organizations increase the rate of
+learning. Issues are closed, postmortems become documents, fixes remain local, and the deeper
+lesson rarely reaches every structurally related component or future pull request.
 
-Click **Run GroundTruth**. Three specialist agents built with Google ADK:
-
-1. build a causal account grounded in eight evidence objects;
-2. generalize the defect into a reusable, implementation-independent invariant; and
-3. propose known-bad, corrected, held-out, and safety evaluations.
-
-Then the language model leaves the decision boundary. A deterministic payment-state
-simulator proves the learning:
-
-| Future change | Captures | Decision | Why it matters |
-|---|---:|---|---|
-| Original AI retry patch | 2 | **BLOCK** | Reproduces the incident |
-| Corrected stable key | 1 | **PASS** | Proves the fix is viable |
-| Exact future recurrence | 2 | **BLOCK** | Prevents repetition |
-| Held-out crash + redelivery | 2 | **BLOCK** | Generalizes beyond matching code |
-| Safe redelivery change | 1 | **PASS** | Proves the gate does not freeze innovation |
-
-The timeless invariant is simple:
+GroundTruth closes that loop:
 
 ```text
-A logical payment operation must produce at most one successful capture per order.
+failure → evidence → causal signature → organization-wide search → trusted proof
+        → verified learning → preventive control → capability development
 ```
 
-## Why this is different
+The core promise is deliberately bounded:
 
-Incident tools store prose. Static analyzers match known patterns. GroundTruth closes the
-learning loop:
+> Once an organization has verified a failure class, future changes should not be allowed to
+> repeat it silently.
+
+## The flagship proof: a blind Kubernetes replay
+
+The demo uses real public Kubernetes evidence rather than a fabricated incident:
+
+- original issue: [kubernetes/kubernetes#29297](https://github.com/kubernetes/kubernetes/issues/29297);
+- pre-fix source snapshot: `d7150bfaeae642efc08c8ede0ed2ec8ecb340c8e`;
+- independently withheld answer key:
+  [kubernetes/kubernetes#29641](https://github.com/kubernetes/kubernetes/pull/29641).
+
+During the replay, GroundTruth receives only the issue, bounded pre-fix source snapshots, and
+the wrapper mutation path. The later fix, maintainer discussion, and four-file patch scope are
+excluded from the agent packet.
+
+Five Google ADK agents then:
+
+1. separate observed evidence from hypotheses;
+2. reconstruct the shared-nested-pointer causal mechanism;
+3. search for the complete structural signature beyond ConfigMap;
+4. design a deterministic falsifying interleaving and safe control; and
+5. convert the verified lesson into technical, process, and capability interventions.
+
+A trusted evaluator—not the model—then scans the evidence and executes the pointer-aliasing
+reproducer. It finds four affected plugins:
+
+| Component | Relationship | Verified pre-fix location |
+|---|---|---|
+| ConfigMap | Reported failure | `pkg/volume/configmap/configmap.go` |
+| Secret | Proactive sibling exposure | `pkg/volume/secret/secret.go` |
+| Downward API | Proactive sibling exposure | `pkg/volume/downwardapi/downwardapi.go` |
+| GitRepo | Proactive sibling exposure | `pkg/volume/git_repo/git_repo.go` |
+
+Only after those findings are frozen does GroundTruth reveal the historical fixing PR. The
+independent scan matches all four paths with 100% precision and recall.
+
+This is a retrospective benchmark, not a claim that GroundTruth discovered an unknown
+Kubernetes bug. The historical patch is an external answer key proving that the system reached
+the same blast radius without receiving the answer.
+
+## The “aha” moment
 
 ```text
-incident → evidence → causal model → failure class → executable invariant
-         → known-bad/corrected proof → held-out evaluation → durable memory
+One reported ConfigMap failure
+              ↓
+Shared mutable nested state under concurrency
+              ↓
+Secret + Downward API + GitRepo also exposed
+              ↓
+Exact match to the later human patch
+              ↓
+Hash-linked learning GT-K8S-0001
+              ↓
+Future Northstar PR NSTR-204 blocked by the learned invariant
 ```
 
-The model interprets and generalizes; real behavior supplies truth. A lesson is never marked
-verified merely because an LLM says it is correct.
+The future Northstar PR is explicitly synthetic concept data. Its purpose is to demonstrate
+that a verified public lesson can become an enforceable organizational control instead of
+remaining historical trivia.
+
+## More than a bug scanner
+
+GroundTruth is not positioned as another SAST tool or issue summarizer. Bug discovery is one
+step inside a wider institutional loop:
+
+- **Changes:** route assurance by consequence and intended value.
+- **Assurance workspace:** show agent reasoning, trusted evaluators, and decisions.
+- **Learning ledger:** preserve verified failure classes, provenance, uncertainty, and controls.
+- **Incidents & learning:** connect technical, testing, process, organizational, and human dimensions.
+- **People & capability:** create teach-backs, practice labs, pairing, and ownership without
+  employee ranking or surveillance.
+- **Verified value:** distinguish observed outcomes from attractive but unproven claims.
+
+## Append-only learning ledger
+
+Each verified learning transition is appended as a SHA-256 hash-linked event:
+
+```text
+HYPOTHESIS_RECORDED
+  → EVIDENCE_VERIFIED
+  → GROUND_TRUTH_CONFIRMED
+  → CONTROL_ATTACHED
+```
+
+Every event includes its actor, payload, timestamp, previous hash, and own hash. The ledger API
+supports append and read operations; there is no update or delete method. Corrections and
+superseding evidence must become new events, preserving the institution's reasoning history.
+
+## Trust boundaries
+
+- Gemini interprets evidence and proposes causal knowledge.
+- Agent outputs are structured and attributable through ADK session state.
+- The answer key is absent from the allowed packet and revealed only after analysis.
+- Deterministic code decides structural matches, pointer aliasing, precision, recall, and final
+  evidence verification.
+- Candidate lessons cannot enforce controls until trusted evidence verifies them.
+- Gemini failure invokes a clearly labeled grounded continuity path; it never fabricates a
+  model run.
 
 ## Built with Google Cloud
 
-- **Gemini 3.5 Flash** on Vertex AI's global endpoint for structured forensic synthesis,
-  generalization, and verification design.
-- **Google Agent Development Kit 2.8** with a real `SequentialAgent` team and structured
-  Pydantic outputs stored in ADK session state.
-- **Cloud Run** for the public application and workflow runtime, cost-capped at 0–2 instances.
-- **Firebase Hosting** for the stable public front door and full-service Cloud Run rewrite.
-- **Firestore Native** for durable runs and verified organizational memory.
-- **Pub/Sub** for asynchronous incident ingestion.
+- **Gemini 3.5 Flash** on Vertex AI's global endpoint.
+- **Google Agent Development Kit 2.8** with five `LlmAgent` specialists inside a real
+  `SequentialAgent` and structured Pydantic outputs.
+- **Cloud Run** for the FastAPI application and asynchronous assurance workflow.
+- **Firebase Hosting** for the stable public front door.
+- **Firestore Native** for durable assurance runs.
+- **Pub/Sub** for asynchronous evidence/incident triggers.
 - **Cloud Build + Artifact Registry** for reproducible deployment.
-
-The runtime service account has only `Vertex AI User`, `Cloud Datastore User`, and
-`Pub/Sub Publisher` roles.
-
-## Safety and grounding
-
-- Agent inputs contain a closed evidence packet with stable evidence IDs.
-- The forensic prompt forbids unsupported people, systems, timestamps, code, and impact.
-- Facts and unknowns are separate structured fields.
-- Causal claims expose their evidence citations.
-- The evaluator is deterministic and isolated from model output.
-- Certification requires both known-bad rejection and corrected-path acceptance.
-- A held-out variant tests causal generalization; a safe change tests overblocking.
-- Gemini failures invoke a clearly labeled grounded continuity path, never a fake model claim.
 
 ## Run locally
 
@@ -90,24 +147,21 @@ uv sync
 uv run uvicorn app.main:app --reload
 ```
 
-Open `http://127.0.0.1:8000`. To exercise the complete deterministic experience without a
-Vertex call, set `ENABLE_GEMINI=false`. The UI labels that execution
+Open `http://127.0.0.1:8000`. Set `ENABLE_GEMINI=false` for the complete deterministic
+continuity path without a Vertex call. The run is explicitly labeled
 `grounded-local-fallback`.
 
-Run all verification:
+Verification:
 
 ```bash
 uv run ruff check app tests
 uv run pytest
-uv run python -m app.cli evaluate
 ```
 
-Expected: **57 tests pass** and all five evaluation cases are verified.
+Expected: **62 tests pass**, including sealed-packet isolation, exact structural scope,
+aliasing/fresh-object behavior, hash-chain integrity, API routes, and the full workflow.
 
 ## Deploy
-
-The checked-in `Dockerfile` is the deployment source. This is the cost-capped deployment
-shape used by the live demo:
 
 ```bash
 gcloud run deploy groundtruth \
@@ -119,40 +173,35 @@ gcloud run deploy groundtruth \
   --min-instances=0 --max-instances=2 \
   --no-cpu-throttling \
   --cpu=1 --memory=1Gi --concurrency=8 --timeout=300 \
-  --set-env-vars='GOOGLE_CLOUD_LOCATION=global,MODEL=gemini-3.5-flash,ENABLE_GEMINI=true,USE_VERTEX=true,USE_FIRESTORE=true'
+  --set-env-vars='GOOGLE_CLOUD_LOCATION=global,MODEL=gemini-3.5-flash,ENABLE_GEMINI=true,USE_VERTEX=true,USE_FIRESTORE=true,DEMO_DELAY_MS=180'
 ```
 
 ## Repository map
 
 ```text
-app/agents/       ADK specialist team, prompts, structured contracts
-app/lab/          deterministic payment provider and evaluation scenarios
-app/workflow.py   certification and future-change learning loop
-app/main.py       FastAPI UI, API, and Pub/Sub push entrypoint
-firebase.json     stable Hosting front door rewritten to Cloud Run
-fixtures/         synthetic incident evidence packet
-templates/        evidence-first demo interface
-tests/            legacy suite, evaluator, workflow, and web checks
-docs/             architecture, demo script, and submission evidence
+app/agents/assurance.py       five-role Google ADK team
+app/kubernetes_evidence.py    sealed benchmark, structural evaluator, reproducer
+app/assurance_workflow.py     blind replay, reveal, verification, propagation
+app/learning_ledger.py        append-only SHA-256 event chain
+app/platform_data.py          generic organization and platform concept model
+app/main.py                   FastAPI pages, APIs, Pub/Sub entrypoint
+templates/platform.html       multi-page application shell
+static/platform.*             platform interaction and visual system
+tests/test_blind_replay.py    evidence-boundary and end-to-end proof
+docs/                         architecture, claims, script, submission material
 ```
 
-## Evidence and disclosure
+The original single-incident PoC remains preserved on the `archive/incident-poc` branch and
+at `/legacy`; it is not the primary product experience.
 
-All company, customer, payment-provider, order, code-change, and incident data are synthetic.
-Agent execution, Gemini calls, ADK orchestration, test execution, cloud infrastructure, and
-evaluation outcomes are real. The exact limits of every claim are documented in
-[`docs/claims-ledger.md`](docs/claims-ledger.md).
+## Evidence disclosure
 
-See also:
+Kubernetes issue, source locations, commit identifiers, and fixing PR are real public
+artifacts. Northstar organization, people, financial, portfolio, and future-PR data are
+synthetic concept data. Agent execution, Vertex calls, deterministic evaluator results,
+tests, ledger hashes, and cloud infrastructure are real. See
+[`docs/claims-ledger.md`](docs/claims-ledger.md) for exact claim boundaries.
 
-- [`docs/architecture.md`](docs/architecture.md)
-- [`docs/demo-script.md`](docs/demo-script.md)
-- [`docs/submission.md`](docs/submission.md)
-- [`BLOCKERS.md`](BLOCKERS.md)
-
-## The larger idea
-
-AI increases the rate of change. GroundTruth makes the rate of learning compound with it.
-Its principle is independent of today's models and tools: organizations improve when
-experience becomes verified capability, value creation remains the measure, and people gain
-better judgment instead of better blame metrics.
+AI will keep changing. The principle does not: organizations improve when experience becomes
+verified shared capability, value remains the measure, and people gain better judgment instead
+of better blame metrics.

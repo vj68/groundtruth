@@ -1,15 +1,21 @@
 # Blocker log
 
-Implementation continued through every issue; none changed the product claim.
+Implementation continued through every issue; none weakened the product claim.
 
 | Time (IST) | Blocker | Status | Resolution / impact |
 |---|---|---|---|
-| 31 Aug 2026 | Local Docker could not resolve `registry-1.docker.io` through its embedded DNS | Bypassed | Google Cloud Build pulled the base image successfully; local Python package build also passed. |
-| 31 Aug 2026 | First remote image build found ambiguous flat-layout package discovery | Resolved | Constrained setuptools discovery to `app*`; wheel, sdist, and remote container build passed. |
-| 31 Aug 2026 | `gemini-3.5-flash` returned 404 in `us-central1` | Resolved | Google lists PayGo availability on `global`, `us`, and `eu`; configured Vertex model location as `global`. Real three-agent call passed. |
-| 31 Aug 2026 | New Cloud Run hostnames returned Google edge 404 despite healthy revisions and public invoker bindings | Mitigated | Firebase Hosting now supplies the stable front door and rewrites to the same Cloud Run service. Public end-to-end run `run_5cb7da6518` passed. The diagnostic `asia-south1` service remains capped at 0–2 instances. |
-| 31 Aug 2026 | Request-based Cloud Run CPU paused the accepted background workflow | Resolved | Enabled instance-based CPU with min instances 0 and max instances 2. A fresh public 3-agent run completed and persisted. |
+| 31 Aug 2026 | Local Docker could not resolve Docker Hub through embedded DNS | Bypassed | Cloud Build pulled the base image successfully; local Python build also passed. |
+| 31 Aug 2026 | Initial source build found ambiguous package discovery | Resolved | Constrained setuptools discovery to `app*`; wheel, sdist, and remote build passed. |
+| 31 Aug 2026 | `gemini-3.5-flash` returned 404 in `us-central1` | Resolved | Configured the Vertex model endpoint as `global`; live calls pass. |
+| 31 Aug 2026 | Direct Cloud Run hostnames returned edge 404 despite healthy revisions | Mitigated | Firebase Hosting supplies the stable public front door and rewrites to Cloud Run. |
+| 31 Aug 2026 | Request-based Cloud Run CPU paused accepted background work | Resolved | Enabled instance-based CPU with min 0 and max 2. |
+| 1 Sep 2026 | First five-agent live replay exceeded a strict `PatternAnalysis` string bound | Resolved | Relaxed bounded structured fields while retaining schemas; a fresh Vertex run completed all five agents. |
+| 1 Sep 2026 | Browser requested a missing favicon | Resolved | Added an inline SVG favicon; browser console is now clean. |
 
-Warnings from dependencies are non-blocking: ADK 2.8 deprecates legacy `SequentialAgent` in
-favor of a newer Workflow API, and FastAPI's test client emits a Starlette/httpx transition
-warning. The installed, tested APIs remain functional for this submission.
+## Non-blocking warnings
+
+- Google ADK emits an advisory about direct asynchronous model generation/AFC internals. The
+  installed `SequentialAgent` path remains functional and the five-agent live run completes.
+- FastAPI's test client emits a Starlette/httpx transition warning. All 62 tests pass.
+- The historical Kubernetes benchmark uses bounded source excerpts and a semantic reproducer,
+  not a full 2016 Kubernetes build. The claim is scoped accordingly in the claims ledger.

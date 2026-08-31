@@ -15,3 +15,5 @@ build/
 artifacts/runs/*
 !artifacts/runs/.gitkeep
 local-data/
+.playwright-cli/
+output/playwright/

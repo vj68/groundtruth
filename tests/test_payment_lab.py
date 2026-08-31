@@ -26,4 +26,3 @@ def test_held_out_evaluation_proves_sensitivity_and_specificity() -> None:
     assert results["exact_recurrence"].decision == "BLOCK"
     assert results["held_out_variant"].decision == "BLOCK"
     assert results["safe_change"].decision == "PASS"
-

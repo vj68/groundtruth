@@ -32,4 +32,3 @@ def load_evidence() -> list[Evidence]:
 
 def fixture_path(name: str) -> Path:
     return get_settings().fixture_dir / name
-

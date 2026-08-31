@@ -12,4 +12,3 @@ def test_existing_suite_passes_obvious_payment_paths(sample: int) -> None:
     result = run_scenario("normal_success")
     assert result.observed_captures == 1
     assert result.decision == "PASS"
-

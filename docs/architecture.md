@@ -1,78 +1,137 @@
 # Architecture
 
-## One trustworthy loop
+## One trustworthy institutional-learning loop
 
 ```mermaid
 flowchart LR
-    I[Incident trigger<br/>UI or Pub/Sub] --> E[Evidence packet<br/>8 cited artifacts]
-    E --> F[Forensic Agent<br/>Gemini 3.5 Flash]
-    F --> L[Learning Agent<br/>failure class + invariant]
-    L --> V[Verification Designer<br/>4-way evaluation plan]
-    V --> C{Deterministic<br/>certification}
-    C -->|bad blocked + fix passes| M[(Firestore<br/>verified memory)]
-    C -->|otherwise| R[Reject candidate lesson]
-    M --> G{Future-change gate}
-    G -->|2 captures| B[BLOCK]
-    G -->|≤ 1 capture| P[PASS]
+    I[Real issue #29297] --> P[Sealed evidence packet]
+    P --> A1[Evidence Investigator]
+    A1 --> A2[Causal Analyst]
+    A2 --> A3[Pattern Scout]
+    A3 --> A4[Adversary]
+    A4 --> A5[Learning Architect]
+    A5 --> T{Trusted evaluator}
+    T --> S[Structural scope scan]
+    T --> R[Aliasing reproducer]
+    S --> G{Withheld answer-key reveal}
+    R --> G
+    G -->|exact match| L[(Append-only learning ledger)]
+    L --> C[Preventive control]
+    L --> H[Human capability intervention]
+    C --> F[Future PR blocked]
 ```
 
-## Components and trust boundaries
+## Evidence boundary
 
-| Component | Responsibility | May decide safety? |
+The benchmark has two deliberately separate data structures.
+
+### Allowed packet
+
+`allowed_evidence_packet()` contains:
+
+- original public issue metadata;
+- bounded source excerpts from pre-fix commit `d7150bfaeae6`;
+- the mutating `NewWrapperMounter` call path; and
+- constraints requiring causal rather than textual equivalence.
+
+### Withheld answer key
+
+`WITHHELD_GROUND_TRUTH` contains:
+
+- merged PR `kubernetes/kubernetes#29641`;
+- its expected four plugin paths; and
+- the historical fresh-object remediation.
+
+The answer key is not serialized into the agent message. Unit tests assert that `29641` and
+`expected_paths` do not appear in the allowed packet. Comparison occurs only after agent
+artifacts and deterministic findings are frozen.
+
+## Agent roles
+
+| Agent | Responsibility | May verify the claim? |
 |---|---|---|
-| Forensic Agent | Evidence-cited causal synthesis; separate facts and unknowns | No |
-| Learning Agent | Generalize to a reusable failure class and invariant | No |
-| Verification Designer | Propose reproduction, corrected, held-out, and safety cases | No |
-| Payment-state simulator | Execute provider side effects and count captures | **Yes** |
-| Workflow | Require known-bad + corrected certification before verification | **Yes** |
-| Firestore | Persist run state and verified memory | No |
-| Pub/Sub | Deliver incident triggers to the Cloud Run push endpoint | No |
+| Evidence Investigator | Separate observed signals, hypotheses, and evidence limits | No |
+| Causal Analyst | Derive the failure mechanism, class, and reusable invariant | No |
+| Pattern Scout | Identify candidates satisfying the complete causal signature | No |
+| Adversary | Design a deterministic falsifier and safe control | No |
+| Learning Architect | Propose code, process, ownership, and capability actions | No |
+| Trusted evaluator | Execute structural checks and aliasing/fresh-object controls | **Yes** |
+| Ground-Truth Judge | Compare frozen findings with the withheld historical patch | **Yes** |
+| Ledger verifier | Verify every event and previous-hash link | **Yes** |
 
-The most important boundary is between proposal and proof. Gemini's structured result can
-change the name and description of a candidate control. It cannot fabricate a passing
-capture count or set a final PASS/BLOCK decision.
+ADK's `SequentialAgent` runs the five `LlmAgent` specialists. Every specialist has a Pydantic
+`output_schema` and `output_key`; ADK validates the result and writes it to session state for
+the next role. A successful live trace contains five terminal structured outputs and is labeled
+`vertex-adk:gemini-3.5-flash`.
 
-## Agent data flow
+## Causal evaluator
 
-ADK's `SequentialAgent` runs the three specialists. Each uses `output_schema` and
-`output_key`; ADK validates the JSON and writes the result to session state. Later agents
-consume only the original evidence and the preceding structured state.
+The structural evaluator requires every clause below:
+
+1. a package-level reusable `wrappedVolumeSpec`;
+2. a nested `*api.Volume` pointer;
+3. reuse of that value in `NewWrapperMounter`; and
+4. request-specific mutation of `spec.Volume.Name` in the host.
+
+This avoids treating keyword or API similarity as proof.
+
+The deterministic reproducer shallow-copies one spec into Mount A and Mount B. Both outer
+objects point to the same nested volume. After this interleaving:
 
 ```text
-forensic_result     : ForensicFinding
-learning_result     : GeneralizedLesson
-verification_result : VerificationPlan
+A writes wrapped_config-a
+B writes wrapped_config-b
+A reads  wrapped_config-b  ← invariant falsified
 ```
 
-The application records an inspectable `agent_trace` with the author of each terminal
-structured output. The live execution mode is `vertex-adk:gemini-3.5-flash`.
+The safe control constructs a fresh nested object per mount; A and B retain distinct names.
 
-## Evaluator semantics
+## Append-only learning ledger
 
-The provider simulator implements the same semantic boundary that matters in production:
+Each event hash is computed from canonical JSON containing:
 
-1. an external capture can succeed;
-2. its acknowledgement can be lost;
-3. the worker can retry; and
-4. provider deduplication is keyed by idempotency identity.
+```text
+sequence + learning_id + event_type + actor + timestamp + payload + previous_hash
+```
 
-Attempt-scoped identities create two captures. A logical-operation-scoped identity returns
-the original capture. The held-out case changes the trigger from acknowledgement timeout to
-consumer crash + queue redelivery while preserving the causal failure class.
+The first event points to `GENESIS`; each later event points to the previous event hash. The
+public class has `append`, `list`, and `verify` operations—no update or delete operation.
+Deep copies prevent callers from mutating stored events through returned references.
+
+The demo chain is:
+
+```text
+HYPOTHESIS_RECORDED
+  → EVIDENCE_VERIFIED
+  → GROUND_TRUTH_CONFIRMED
+  → CONTROL_ATTACHED
+```
+
+## Product architecture
+
+The same evidence and learning model powers seven routes:
+
+- `/overview` — organization-level velocity, value, learning coverage, and activity;
+- `/changes` — consequence-routed portfolio;
+- `/changes/K8S-29297` — complete assurance workspace;
+- `/memory` — verified/candidate failure classes and live ledger chain;
+- `/incidents` — multidimensional learning packages;
+- `/capability` — team-level knowledge coverage and developmental interventions;
+- `/outcomes` — verified value ledger with explicit uncertainty.
+
+The organization model is generic and synthetic. The Kubernetes evidence benchmark is real and
+serves as the flagship proof inside the platform.
 
 ## Cloud topology
 
 - Cloud Run service: `groundtruth`, `us-central1`, public, 0–2 instances.
-- Firebase Hosting: `groundtruth-507213.web.app`, rewritten to the Cloud Run service.
+- Firebase Hosting: `groundtruth-507213.web.app`, rewritten to Cloud Run.
 - Vertex endpoint: `global`; model: `gemini-3.5-flash`.
-- Firestore: `(default)`, Native mode, Standard edition, `us-central1`, free tier.
-- Pub/Sub topic: `groundtruth-incidents`.
-- Artifact Registry repository: `cloud-run-source-deploy`, `us-central1`.
+- Firestore Native: durable assurance runs.
+- Pub/Sub topic: asynchronous evidence/incident trigger.
+- Cloud Build and Artifact Registry: source deployment.
 - Runtime identity: `groundtruth-runtime@groundtruth-507213.iam.gserviceaccount.com`.
 
-Cloud Run owns no long-lived secret. It uses its attached service-account identity and
-Application Default Credentials.
-
-The service uses instance-based CPU because an accepted asynchronous ADK run must continue
-after the initiating response. Minimum instances remain zero and maximum instances remain
-two, so the capability scales fully to zero and its compute ceiling is explicit.
+Cloud Run uses instance-based CPU because an accepted asynchronous ADK run must continue after
+the initiating HTTP response. It still scales to zero, and maximum instances remain capped at
+two.

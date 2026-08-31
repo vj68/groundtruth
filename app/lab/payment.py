@@ -172,4 +172,3 @@ def held_out_matrix() -> list[ScenarioResult]:
         run_scenario("held_out_variant"),
         run_scenario("safe_change"),
     ]
-

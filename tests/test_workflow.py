@@ -41,14 +41,37 @@ async def test_workflow_produces_verified_learning(monkeypatch, tmp_path) -> Non
     get_settings.cache_clear()
 
 
-def test_health_and_demo_page() -> None:
+def test_health_and_platform_shell() -> None:
     client = TestClient(app)
     health = client.get("/healthz")
     page = client.get("/")
 
     assert health.json() == {"status": "ok", "service": "groundtruth"}
     assert page.status_code == 200
-    assert "GroundTruth prevents" in page.text
-    assert "Transparent synthetic scenario" in page.text
-    assert 'href="/static/styles.css"' in page.text
-    assert 'src="/static/app.js"' in page.text
+    assert "Institutional learning control plane" in page.text
+    assert "Assurance workspace" in page.text
+    assert 'href="/static/platform.css"' in page.text
+    assert 'src="/static/platform.js"' in page.text
+
+
+def test_all_platform_pages_and_payload_are_available() -> None:
+    client = TestClient(app)
+    for path in [
+        "/overview",
+        "/changes",
+        "/changes/K8S-29297",
+        "/memory",
+        "/incidents",
+        "/capability",
+        "/outcomes",
+    ]:
+        response = client.get(path)
+        assert response.status_code == 200, path
+
+    payload = client.get("/api/platform").json()
+    assert payload["organization"]["name"] == "Northstar Engineering"
+    assert payload["change_detail"]["issue"]["id"] == "kubernetes/kubernetes#29297"
+    assert len(payload["change_detail"]["source_snapshots"]) == 4
+
+    missing = client.get("/changes/UNKNOWN")
+    assert missing.status_code == 404

@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="GroundTruth turns every verified engineering mistake into organization-wide memory and protection.">
+  <title>{{ page_title }} · GroundTruth</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%2313241b'/%3E%3Cpath d='M7 21h5V11H7zm7 5h5V6h-5zm7-3h5V9h-5z' fill='%23c8f06e'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/static/platform.css">
+</head>
+<body data-page="{{ page }}">
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar">
+      <a class="brand" href="/overview" aria-label="GroundTruth home">
+        <span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i></span>
+        <span><strong>GroundTruth</strong><small>Institutional learning control plane</small></span>
+      </a>
+
+      <nav class="primary-nav" aria-label="Platform navigation">
+        <p class="nav-label">Organization</p>
+        <a href="/overview" data-nav="overview"><span class="nav-icon">⌂</span><span>Overview</span></a>
+        <a href="/changes" data-nav="changes"><span class="nav-icon">↗</span><span>Changes</span><b>4</b></a>
+        <a href="/changes/K8S-29297" data-nav="assurance"><span class="nav-icon">◇</span><span>Assurance workspace</span><em></em></a>
+        <p class="nav-label">Learning system</p>
+        <a href="/memory" data-nav="memory"><span class="nav-icon">▱</span><span>Learning ledger</span></a>
+        <a href="/incidents" data-nav="incidents"><span class="nav-icon">◎</span><span>Incidents & learning</span></a>
+        <a href="/capability" data-nav="capability"><span class="nav-icon">△</span><span>People & capability</span></a>
+        <a href="/outcomes" data-nav="outcomes"><span class="nav-icon">⌁</span><span>Verified value</span></a>
+      </nav>
+
+      <div class="sidebar-principle">
+        <span class="pulse-dot"></span>
+        <p>One team learns.<br><strong>The whole organization gets stronger.</strong></p>
+      </div>
+      <div class="org-switcher">
+        <span class="org-avatar">NE</span>
+        <span><strong>{{ organization.name }}</strong><small>Concept workspace</small></span>
+        <span class="chevron">⌄</span>
+      </div>
+    </aside>
+
+    <section class="workspace">
+      <header class="topbar">
+        <button class="menu-button" id="menu-button" aria-label="Toggle navigation">☰</button>
+        <div class="page-context">
+          <span class="context-kicker">{{ organization.name }}</span>
+          <strong>{{ page_title }}</strong>
+        </div>
+        <div class="topbar-actions">
+          <span class="environment-badge"><i></i> Live agents</span>
+          <button class="icon-button" aria-label="Search"><span>⌕</span><kbd>⌘ K</kbd></button>
+          <span class="user-avatar">VJ</span>
+        </div>
+      </header>
+      <main id="page-root" tabindex="-1">
+        <div class="page-loading">
+          <span class="loader-mark"><i></i><i></i><i></i></span>
+          <p>Loading organizational context…</p>
+        </div>
+      </main>
+    </section>
+  </div>
+  <div class="toast-region" id="toast-region" aria-live="polite"></div>
+  <script src="/static/platform.js" defer></script>
+</body>
+</html>

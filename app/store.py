@@ -76,4 +76,3 @@ def get_store() -> Store:
     if _store is None:
         _store = FirestoreStore() if get_settings().use_firestore else MemoryStore()
     return _store
-
