@@ -58,6 +58,10 @@ def _configure_vertex() -> None:
 
 def _team() -> SequentialAgent:
     model = get_settings().model
+    generation = types.GenerateContentConfig(
+        max_output_tokens=4096,
+        thinking_config=types.ThinkingConfig(thinking_level=types.ThinkingLevel.LOW),
+    )
     forensic = LlmAgent(
         name="forensic_agent",
         description="Builds an evidence-cited causal account without speculation.",
@@ -66,6 +70,7 @@ def _team() -> SequentialAgent:
         output_schema=ForensicFinding,
         output_key="forensic_result",
         include_contents="default",
+        generate_content_config=generation,
     )
     learning = LlmAgent(
         name="learning_agent",
@@ -75,6 +80,7 @@ def _team() -> SequentialAgent:
         output_schema=GeneralizedLesson,
         output_key="learning_result",
         include_contents="default",
+        generate_content_config=generation,
     )
     verification = LlmAgent(
         name="verification_designer",
@@ -84,6 +90,7 @@ def _team() -> SequentialAgent:
         output_schema=VerificationPlan,
         output_key="verification_result",
         include_contents="default",
+        generate_content_config=generation,
     )
     return SequentialAgent(
         name="groundtruth_team",
