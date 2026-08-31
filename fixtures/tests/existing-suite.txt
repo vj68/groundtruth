@@ -1,0 +1,5 @@
+48 passed in 0.42s
+
+Covered: normal success, explicit decline, validation, timeout before provider capture.
+Missing: provider capture succeeds but acknowledgement is lost before local persistence.
+

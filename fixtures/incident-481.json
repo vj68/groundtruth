@@ -1,0 +1,78 @@
+{
+  "incident_id": "INC-481",
+  "title": "Customer charged twice after payment acknowledgement timeout",
+  "summary": "An AI-generated retry patch issued a second capture when the payment provider completed the first capture but its acknowledgement was lost.",
+  "impact": {
+    "order_id": "order-481",
+    "expected_charge_inr": 5000,
+    "observed_charges_inr": [5000, 5000],
+    "customer_visible": true
+  },
+  "change": {
+    "title": "Improve payment reliability by retrying provider timeouts",
+    "author": "AI coding assistant with engineer approval",
+    "existing_suite": "48 passed",
+    "review_result": "approved",
+    "claimed_outcome": "Transient timeouts no longer leave orders unpaid"
+  },
+  "evidence": [
+    {
+      "id": "ev-ledger-1",
+      "kind": "ledger",
+      "title": "Two successful captures for one order",
+      "excerpt": "order-481: cap_a1 amount=5000; cap_b2 amount=5000",
+      "source": "synthetic-ledger://orders/order-481"
+    },
+    {
+      "id": "ev-log-1",
+      "kind": "log",
+      "title": "Provider completed the initial capture",
+      "excerpt": "capture succeeded order=order-481 request=attempt-1",
+      "source": "fixtures/logs/payment-worker.log#L18"
+    },
+    {
+      "id": "ev-log-2",
+      "kind": "log",
+      "title": "Acknowledgement was lost",
+      "excerpt": "deadline exceeded waiting for provider response; completion unknown",
+      "source": "fixtures/logs/payment-worker.log#L19"
+    },
+    {
+      "id": "ev-log-3",
+      "kind": "log",
+      "title": "Retry used a new provider identity",
+      "excerpt": "retry capture order=order-481 request=attempt-2",
+      "source": "fixtures/logs/payment-worker.log#L24"
+    },
+    {
+      "id": "ev-source-1",
+      "kind": "source",
+      "title": "Retry key is derived from attempt number",
+      "excerpt": "idempotency_key = f\"{order_id}:attempt-{attempt}\"",
+      "source": "fixtures/patches/ai-retry.patch#L11"
+    },
+    {
+      "id": "ev-test-1",
+      "kind": "test",
+      "title": "Existing timeout test assumes no provider side effect",
+      "excerpt": "provider.timeout_before_capture = True",
+      "source": "fixtures/tests/existing-suite.txt#timeout-retry"
+    },
+    {
+      "id": "ev-arch-1",
+      "kind": "architecture",
+      "title": "Provider completion and local persistence are separate operations",
+      "excerpt": "capture provider -> receive acknowledgement -> persist completion",
+      "source": "fixtures/architecture/payment-flow.txt"
+    },
+    {
+      "id": "ev-incident-1",
+      "kind": "incident",
+      "title": "Initial postmortem action did not create an executable control",
+      "excerpt": "Action: remind engineers to use idempotency keys for retries",
+      "source": "fixtures/postmortems/INC-481.md"
+    }
+  ],
+  "disclosure": "All company, customer, payment-provider and incident data in this fixture are synthetic. Agent execution, test execution and evaluation results are real."
+}
+

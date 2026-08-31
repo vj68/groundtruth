@@ -1,0 +1,7 @@
+2026-08-14T09:31:04.100Z INFO order=order-481 capture requested request=attempt-1
+2026-08-14T09:31:04.342Z INFO order=order-481 capture succeeded request=attempt-1 capture=cap_a1
+2026-08-14T09:31:06.101Z ERROR order=order-481 deadline exceeded waiting for provider response; completion unknown
+2026-08-14T09:31:06.102Z WARN order=order-481 retry scheduled attempt=2
+2026-08-14T09:31:07.014Z INFO order=order-481 retry capture request=attempt-2
+2026-08-14T09:31:07.220Z INFO order=order-481 capture succeeded request=attempt-2 capture=cap_b2
+

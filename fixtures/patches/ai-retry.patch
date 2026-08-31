@@ -1,0 +1,14 @@
+diff --git a/payment_worker.py b/payment_worker.py
+index 5d21b90..bb11031 100644
+--- a/payment_worker.py
++++ b/payment_worker.py
+@@ -41,6 +41,12 @@ def capture_order(order_id, amount):
+-    return provider.capture(order_id, amount)
++    for attempt in range(1, 3):
++        try:
++            idempotency_key = f"{order_id}:attempt-{attempt}"
++            return provider.capture(order_id, amount, idempotency_key)
++        except ProviderTimeout:
++            if attempt == 2:
++                raise
+

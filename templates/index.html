@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="GroundTruth turns incidents into executable organizational learning.">
+    <title>GroundTruth — Make incidents impossible to repeat</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', path='/styles.css') }}">
+  </head>
+  <body>
+    <div class="ambient ambient-one"></div>
+    <div class="ambient ambient-two"></div>
+    <header class="nav shell">
+      <a class="brand" href="#" aria-label="GroundTruth home">
+        <span class="brand-mark"><i></i><i></i><i></i></span>
+        <span>GroundTruth</span>
+      </a>
+      <div class="nav-meta">
+        <span class="chip chip-live"><span></span> Cloud-ready</span>
+        <span class="chip">Taskmaster track</span>
+      </div>
+    </header>
+
+    <main class="shell">
+      <section class="hero">
+        <div class="eyebrow">Executable organizational learning</div>
+        <h1>Your postmortem remembers.<br><em>GroundTruth prevents.</em></h1>
+        <p class="hero-copy">Turn one production incident into an evidence-backed, executable defense that protects every future change—without freezing innovation.</p>
+        <div class="hero-actions">
+          <button id="start-run" class="primary-action">
+            <span>Run GroundTruth</span>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </button>
+          <span class="runtime-note">Gemini + Google ADK · deterministic truth gate</span>
+        </div>
+      </section>
+
+      <section class="incident-panel" aria-labelledby="incident-title">
+        <div class="panel-topline">
+          <div class="incident-id"><span class="severity-dot"></span>{{ incident.incident_id }}</div>
+          <div class="synthetic-label">Transparent synthetic scenario</div>
+        </div>
+        <div class="incident-grid">
+          <div class="incident-story">
+            <p class="section-label">The incident</p>
+            <h2 id="incident-title">{{ incident.title }}</h2>
+            <p>{{ incident.summary }}</p>
+            <div class="change-strip">
+              <div><span>Change</span><strong>AI-generated retry patch</strong></div>
+              <div><span>Existing suite</span><strong class="positive">48 / 48 passed</strong></div>
+              <div><span>Review</span><strong class="positive">Approved</strong></div>
+            </div>
+          </div>
+          <div class="charge-proof">
+            <div class="proof-head"><span>Payment ledger</span><span>order-481</span></div>
+            <div class="charge-row"><span class="capture">CAPTURE 01</span><strong>₹5,000</strong><span class="status-pill">Succeeded</span></div>
+            <div class="charge-row duplicate"><span class="capture">CAPTURE 02</span><strong>₹5,000</strong><span class="status-pill">Succeeded</span></div>
+            <div class="proof-verdict"><span>Expected ₹5,000</span><strong>Customer charged twice</strong></div>
+          </div>
+        </div>
+      </section>
+
+      <section id="workspace" class="workspace is-idle" aria-live="polite">
+        <div class="workspace-header">
+          <div>
+            <p class="section-label">Live learning run</p>
+            <h2>From evidence to organizational memory</h2>
+          </div>
+          <div id="run-state" class="run-state"><span></span>Ready</div>
+        </div>
+
+        <div class="pipeline" id="pipeline">
+          <div class="pipeline-step" data-stage="investigating"><span>01</span><div><strong>Investigate</strong><small>Forensic agent</small></div></div>
+          <div class="pipeline-line"></div>
+          <div class="pipeline-step" data-stage="generalizing"><span>02</span><div><strong>Generalize</strong><small>Learning agent</small></div></div>
+          <div class="pipeline-line"></div>
+          <div class="pipeline-step" data-stage="verifying"><span>03</span><div><strong>Verify</strong><small>Truth gate</small></div></div>
+          <div class="pipeline-line"></div>
+          <div class="pipeline-step" data-stage="complete"><span>04</span><div><strong>Remember</strong><small>Future changes</small></div></div>
+        </div>
+
+        <div id="empty-state" class="empty-state">
+          <div class="radar"><span></span><i></i></div>
+          <p>Start the run to watch GroundTruth investigate evidence, learn an invariant, and prove it against real behavior.</p>
+        </div>
+
+        <div id="results" class="results" hidden>
+          <div class="result-column">
+            <article class="result-card" id="causal-card">
+              <div class="card-heading"><span class="card-icon evidence-icon">⌁</span><div><small>Grounded finding</small><h3>Causal chain</h3></div><span id="evidence-count" class="count-pill">0 evidence</span></div>
+              <p id="investigation-summary" class="summary-text">Analyzing supplied evidence…</p>
+              <ol id="causal-chain" class="causal-chain"></ol>
+            </article>
+
+            <article class="result-card learning-card">
+              <div class="card-heading"><span class="card-icon learning-icon">◇</span><div><small>Reusable learning</small><h3>Verified invariant</h3></div><span id="learning-status" class="count-pill">Candidate</span></div>
+              <p id="failure-class" class="failure-class">Generalizing failure class…</p>
+              <blockquote id="invariant">Waiting for the learning agent.</blockquote>
+              <div class="control-code"><span>CONTROL</span><code>successful_captures_per_order &lt;= 1</code></div>
+            </article>
+          </div>
+
+          <article class="result-card evaluation-card">
+            <div class="card-heading"><span class="card-icon eval-icon">✓</span><div><small>Executable proof</small><h3>Future-change gate</h3></div><span id="matrix-score" class="count-pill">0 / 5</span></div>
+            <p class="evaluation-intro">The model proposes. The isolated payment-state simulator decides.</p>
+            <div id="evaluation-list" class="evaluation-list"></div>
+            <div id="final-verdict" class="final-verdict waiting">
+              <span class="verdict-mark">·</span>
+              <div><small>Organizational memory</small><strong>Waiting for executable proof</strong></div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="principles">
+        <div><span>01</span><h3>Evidence before confidence</h3><p>Every causal claim points back to an observed artifact. Unknowns stay unknown.</p></div>
+        <div><span>02</span><h3>Behavior before prose</h3><p>A lesson is not learned until the bad path fails and the corrected path passes.</p></div>
+        <div><span>03</span><h3>Growth before blame</h3><p>Human judgment compounds as incidents become reusable capability—not individual scores.</p></div>
+      </section>
+    </main>
+
+    <footer class="shell">
+      <p>Built for All Things Agentic · GroundTruth</p>
+      <p>{{ incident.disclosure }}</p>
+    </footer>
+    <script src="{{ url_for('static', path='/app.js') }}" defer></script>
+  </body>
+</html>

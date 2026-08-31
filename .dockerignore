@@ -1,0 +1,13 @@
+.git
+.github
+.venv
+__pycache__
+.pytest_cache
+.ruff_cache
+artifacts/runs
+local-data
+tests
+docs
+*.md
+!README.md
+!.env.example
