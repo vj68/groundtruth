@@ -29,3 +29,6 @@ demo/final/*.png
 demo/qa/
 demo/visuals/visual-master.mp4
 demo/visuals/scenes/
+
+# Local-only demo production package (scripts, narration, captures, renders, and finals).
+demo/
