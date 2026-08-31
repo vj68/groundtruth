@@ -7,7 +7,7 @@ turns one incident into an evidence-backed failure class, creates a preventive b
 control, proves that control against real execution, and automatically applies the verified
 lesson to future changes.
 
-**Live demo:** [groundtruth-133812750893.us-central1.run.app](https://groundtruth-133812750893.us-central1.run.app)
+**Live demo:** [groundtruth-507213.web.app](https://groundtruth-507213.web.app)
 
 ## The 90-second story
 
@@ -58,6 +58,7 @@ verified merely because an LLM says it is correct.
 - **Google Agent Development Kit 2.8** with a real `SequentialAgent` team and structured
   Pydantic outputs stored in ADK session state.
 - **Cloud Run** for the public application and workflow runtime, cost-capped at 0–2 instances.
+- **Firebase Hosting** for the stable public front door and full-service Cloud Run rewrite.
 - **Firestore Native** for durable runs and verified organizational memory.
 - **Pub/Sub** for asynchronous incident ingestion.
 - **Cloud Build + Artifact Registry** for reproducible deployment.
@@ -116,6 +117,7 @@ gcloud run deploy groundtruth \
   --service-account=groundtruth-runtime@groundtruth-507213.iam.gserviceaccount.com \
   --allow-unauthenticated \
   --min-instances=0 --max-instances=2 \
+  --no-cpu-throttling \
   --cpu=1 --memory=1Gi --concurrency=8 --timeout=300 \
   --set-env-vars='GOOGLE_CLOUD_LOCATION=global,MODEL=gemini-3.5-flash,ENABLE_GEMINI=true,USE_VERTEX=true,USE_FIRESTORE=true'
 ```
@@ -127,6 +129,7 @@ app/agents/       ADK specialist team, prompts, structured contracts
 app/lab/          deterministic payment provider and evaluation scenarios
 app/workflow.py   certification and future-change learning loop
 app/main.py       FastAPI UI, API, and Pub/Sub push entrypoint
+firebase.json     stable Hosting front door rewritten to Cloud Run
 fixtures/         synthetic incident evidence packet
 templates/        evidence-first demo interface
 tests/            legacy suite, evaluator, workflow, and web checks

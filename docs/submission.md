@@ -33,8 +33,8 @@ tests a held-out variant, and tests a safe change to avoid overblocking.
 
 ## Google technology
 
-Gemini 3.5 Flash, Vertex AI, Google ADK, Cloud Run, Firestore, Pub/Sub, Cloud Build, and
-Artifact Registry.
+Gemini 3.5 Flash, Vertex AI, Google ADK, Cloud Run, Firebase Hosting, Firestore, Pub/Sub,
+Cloud Build, and Artifact Registry.
 
 ## What is real vs synthetic
 
@@ -48,7 +48,7 @@ deployment, and results are real.
 2. Completed-run screenshot showing the invariant and five evaluation rows.
 3. Architecture diagram from `docs/architecture.md`.
 4. 90-second narrated demo following `docs/demo-script.md`.
-5. Public GitHub repository and live Cloud Run URL.
+5. Public GitHub repository and live Firebase Hosting URL backed by Cloud Run.
 
 ## Judging anchors
 

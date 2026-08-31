@@ -50,3 +50,5 @@ def test_health_and_demo_page() -> None:
     assert page.status_code == 200
     assert "GroundTruth prevents" in page.text
     assert "Transparent synthetic scenario" in page.text
+    assert 'href="/static/styles.css"' in page.text
+    assert 'src="/static/app.js"' in page.text

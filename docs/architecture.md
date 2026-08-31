@@ -63,6 +63,7 @@ consumer crash + queue redelivery while preserving the causal failure class.
 ## Cloud topology
 
 - Cloud Run service: `groundtruth`, `us-central1`, public, 0–2 instances.
+- Firebase Hosting: `groundtruth-507213.web.app`, rewritten to the Cloud Run service.
 - Vertex endpoint: `global`; model: `gemini-3.5-flash`.
 - Firestore: `(default)`, Native mode, Standard edition, `us-central1`, free tier.
 - Pub/Sub topic: `groundtruth-incidents`.
@@ -71,3 +72,7 @@ consumer crash + queue redelivery while preserving the causal failure class.
 
 Cloud Run owns no long-lived secret. It uses its attached service-account identity and
 Application Default Credentials.
+
+The service uses instance-based CPU because an accepted asynchronous ADK run must continue
+after the initiating response. Minimum instances remain zero and maximum instances remain
+two, so the capability scales fully to zero and its compute ceiling is explicit.
