@@ -127,7 +127,7 @@ Playwright; Docker; Cloud Build; Artifact Registry.
 
 - **Submitter type:** Individual
 - **Country:** India
-- **Category:** Fortified Enterprise Fleet
+- **Category:** Taskmaster
 - **Organization name:** N/A
 - **Project start date:** 08-31-26
 - **Repository:** https://github.com/vj68/groundtruth

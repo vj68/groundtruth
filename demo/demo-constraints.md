@@ -2,7 +2,7 @@
 
 - **Event:** All Things Agentic Hackathon
 - **Submission deadline:** 31 August 2026 at 5:00 PM PDT / 1 September 2026 at 5:30 AM IST
-- **Target category:** Fortified Enterprise Fleet
+- **Target category:** Taskmaster
 - **Video requirement:** approximately four minutes; target master is 3:35–3:50
 - **Required story:** problem, value proposition, application in action, and visible Google Cloud deployment proof
 - **Required technology:** Gemini 3.5 or newer, a Google agent framework, and Google Cloud infrastructure
